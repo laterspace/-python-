@@ -20,43 +20,26 @@ def get_html(url):
     return html
 
 def get_contents(url):
-    html=get_html(url).decode('gb2312','ignore')
-    #parse=html
-    soup=BeautifulSoup(html,'lxml')
+    html=get_html(url).decode('gb2312','ignore')#解码
 
-    Contents=soup.find('div',attrs={'id':'content'})
-    #a=Contents.text.strip().split('\xa0'*4)
-    download_soup = BeautifulSoup(str(Contents), 'lxml')
-    write_flag = True
-    with open('123.txt','w') as file:
+    soup=BeautifulSoup(html,'lxml')#解析成文档树
+    
+    
+    Contents=soup.find_all('div',attrs={'id':'content'})#全搜索文档数
 
-        for each in download_soup.div.text.replace('\xa0',''):
-                    if each == 'h':
-                        write_flag = False
-                    if write_flag == True and each != ' ':
-                        file.write(each)
-                    if write_flag == True and each == '\r':
-                        file.write('\n')
-        file.write('\n\n')
-        #f.write(str(a))
+    Contents_soup = BeautifulSoup(str(Contents), 'lxml')#再次解析成文档数
+    numbers = len(Contents_soup.dl.contents)
+    print(numbers)
 
-
-    #)
-    #print(type(Contents))
-    #去掉多余<br/>
-    #reg=re.compile(r'(<br/>)*')
-    #Contents=Contents.replace(reg,"\n")
-    #print(download_soup)
+    return Contents_soup
+    
+    
 
 
 
 
 
 def get_chapter():
-    pass
-
-
-def get_info():
     pass
 
 
