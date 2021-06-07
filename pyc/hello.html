@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas-绘制三角形</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500">
+    浏览器不支持canvas
+</canvas>
+<script>
+        window.onload=function () {
+
+            var canvas=document.getElementById("canvas");//获取canvas对象
+
+            var ctx=canvas.getContext("2d"); //创建二维的绘图上下文对象
+
+            ctx.beginPath();
+            ctx.linewidth=20;
+            ctx.lineJoin="round"; //两条线交汇时的边角类型（miter 尖角默认  bevel斜角 round 圆角 ）
+            ctx.moveTo(10,10);
+            ctx.lineTo(110,10);
+            ctx.lineTo(60,50);
+            ctx.closePath(); //closePath() 关闭路径  闭合
+            ctx.strokeStyle="blue";// strokeStyle 只能填充该路径的颜色
+            ctx.fillStyle="red";// fillStyle 填充字体颜色、填充路径区域、图形区域
+            ctx.fill();// 填充
+            ctx.stroke();
+        }
+    </script>
+	</body>
+</html>
